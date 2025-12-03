@@ -111,6 +111,59 @@
                 iframe.style.opacity = '1';
             }, 3000);
         }, 500);
+
+
+
+
+// Override Google Sites CSS
+const style = document.createElement('style');
+style.textContent = `
+    /* Remove Google Sites header */
+    .TbNlJb, 
+    .E2UJ5,
+    .InHK7,
+    [role="banner"],
+    .gg74ce,
+    .BuY5Fd {
+        display: none !important;
+        height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    /* Remove padding/margins from containers */
+    .M63kCb,
+    .QZ3zWd,
+    .UtePc,
+    .DUndBc,
+    .Pe0Cwb,
+    .GMX0Ib {
+        margin: 0 !important;
+        padding: 0 !important;
+        top: 0 !important;
+        left: 0 !important;
+    }
+    
+    /* Make the embed container full viewport */
+    .WIdY2d {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        padding-top: 0 !important;
+    }
+    
+    /* Override Google Sites theme */
+    .fOU46b {
+        background: transparent !important;
+    }
+`;
+document.head.appendChild(style);
+
+
+
+        
     </script>
     
     <style>
