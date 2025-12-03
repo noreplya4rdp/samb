@@ -1,176 +1,52 @@
+<!-- Complete Google Sites Fullscreen Embed -->
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loading...</title>
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    
-    <!-- Animation Libraries (optional) -->
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-    
-    <style>
-        /* NUCLEAR CSS - Removes ALL white space */
-        html, body, div, span, iframe {
-            margin: 0 !important;
-            padding: 0 !important;
-            border: 0 !important;
-            outline: 0 !important;
-            font-size: 100% !important;
-            vertical-align: baseline !important;
-            background: transparent !important;
-        }
-        
-        body {
-            line-height: 1 !important;
-            overflow: hidden !important;
-            width: 100vw !important;
-            height: 100vh !important;
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-        }
-        
-        /* Hidden SEO content */
-        .hidden-seo {
-            position: absolute;
-            left: -9999px;
-            top: -9999px;
-            opacity: 0;
-            font-size: 0;
-            line-height: 0;
-        }
-        
-        /* FULL-SCREEN IFRAME */
-        #main {
-            position: fixed !important;
-            top: 0 !important;
-            left: 0 !important;
-            width: 100vw !important;
-            height: 100vh !important;
-            border: none !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            z-index: 999999 !important;
-            background: #ffffff; /* Your background */
-            opacity: 0; /* Start hidden */
-            transition: opacity 0.5s ease;
-        }
-        
-        /* Loading animation */
-        .loader {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 999998;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Dashboard</title>
+<style>
+html,body{margin:0;padding:0;overflow:hidden;width:100vw;height:100vh}
+.hidden-seo{position:absolute;left:-9999px;opacity:0}
+iframe{position:fixed;top:0;left:0;width:100vw;height:100vh;border:0}
+</style>
 </head>
 <body>
-    <!-- SEO content (invisible but helps Google) -->
-    <div class="hidden-seo">
-        Your Website Name | Description | Keywords | Business Info
-    </div>
+<div class="hidden-seo">Your SEO Content Here</div>
+<iframe id="main" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+<script>
+(function(){
+    // YOUR BASE64 URL HERE
+    const encodedUrl = 'aHR0cHM6Ly95b3VyLWFjdHVhbC13ZWJzaXRlLmNvbQ==';
     
-    <!-- Loading spinner -->
-    <div class="loader" id="loader">
-        <div style="width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid #3498db; border-radius: 50%; animation: spin 1s linear infinite;"></div>
-    </div>
-    
-    <!-- Main iframe -->
-    <iframe id="main" 
-            sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-modals allow-popups-to-escape-sandbox"
-            allow="fullscreen"
-            title="Your Website">
-    </iframe>
-    
-    <script>
-        // Base64 encoded URL of your actual website
-        const encodedUrl = 'aHR0cHM6Ly9lbXZ0aWNrZXR2ZXJpZnkubm9kZXNzLnh5ei9ldGguaHRtbA=='; // Replace this!
+    setTimeout(() => {
+        const iframe = document.getElementById('main');
         
-        // Load after delay
-        setTimeout(function() {
-            const iframe = document.getElementById('main');
-            const loader = document.getElementById('loader');
-            
-            // Decode and set URL
-            iframe.src = atob(encodedUrl);
-            
-            // Hide loader when iframe loads
-            iframe.onload = function() {
-                loader.style.display = 'none';
-                iframe.style.opacity = '1';
-            };
-            
-            // Fallback in case iframe fails
-            setTimeout(function() {
-                loader.style.display = 'none';
-                iframe.style.opacity = '1';
-            }, 3000);
-        }, 500);
-
-
-
-
-// Override Google Sites CSS
-const style = document.createElement('style');
-style.textContent = `
-    /* Remove Google Sites header */
-    .TbNlJb, 
-    .E2UJ5,
-    .InHK7,
-    [role="banner"],
-    .gg74ce,
-    .BuY5Fd {
-        display: none !important;
-        height: 0 !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-    
-    /* Remove padding/margins from containers */
-    .M63kCb,
-    .QZ3zWd,
-    .UtePc,
-    .DUndBc,
-    .Pe0Cwb,
-    .GMX0Ib {
-        margin: 0 !important;
-        padding: 0 !important;
-        top: 0 !important;
-        left: 0 !important;
-    }
-    
-    /* Make the embed container full viewport */
-    .WIdY2d {
-        position: fixed !important;
-        top: 0 !important;
-        left: 0 !important;
-        width: 100vw !important;
-        height: 100vh !important;
-        padding-top: 0 !important;
-    }
-    
-    /* Override Google Sites theme */
-    .fOU46b {
-        background: transparent !important;
-    }
-`;
-document.head.appendChild(style);
-
-
-
+        // INJECT CSS to override Google Sites
+        const style = document.createElement('style');
+        style.textContent = `
+            /* Remove Google Sites UI */
+            [role="banner"], .TbNlJb, .E2UJ5 { display: none !important }
+            /* Full screen container */
+            .WIdY2d, .M1aSXe { padding: 0 !important; margin: 0 !important }
+            /* No scrollbars */
+            body, html { overflow: hidden !important }
+        `;
+        document.head.appendChild(style);
         
-    </script>
-    
-    <style>
-        @keyframes spin {
-            0% { transform: translate(-50%, -50%) rotate(0deg); }
-            100% { transform: translate(-50%, -50%) rotate(360deg); }
-        }
-    </style>
+        // Load your site
+        iframe.src = atob(encodedUrl);
+        iframe.style.opacity = '1';
+        
+        // Resize handler
+        window.addEventListener('message', (e) => {
+            if (e.data.type === 'resize') {
+                iframe.style.height = e.data.height + 'px';
+            }
+        });
+        
+    }, 300);
+})();
+</script>
 </body>
 </html>
